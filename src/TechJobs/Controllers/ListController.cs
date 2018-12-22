@@ -13,7 +13,6 @@ namespace TechJobs.Controllers
         // to initialize static members of a class
         static ListController() 
         {
-            
             columnChoices.Add("core competency", "Skill");
             columnChoices.Add("employer", "Employer");
             columnChoices.Add("location", "Location");
@@ -23,10 +22,13 @@ namespace TechJobs.Controllers
 
         public IActionResult Index()
         {
+            //displays the different types of lists that the user can view
+            //the interaction point between Views/list/index.cshtml
             ViewBag.columns = columnChoices;
             return View();
         }
 
+        //uses query parameter passed by column, to determine which values to fetch from JobData
         public IActionResult Values(string column)
         {
             if (column.Equals("all"))
@@ -46,6 +48,7 @@ namespace TechJobs.Controllers
             }
         }
 
+        //
         public IActionResult Jobs(string column, string value)
         {
             List<Dictionary<String, String>> jobs = JobData.FindByColumnAndValue(column, value);

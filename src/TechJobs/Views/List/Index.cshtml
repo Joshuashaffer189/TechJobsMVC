@@ -1,9 +1,16 @@
 ﻿<h1>@ViewBag.Title</h1>
 <h2>View All</h2>
+
+@*routes to ListController - Values function/action - *@
+@* asp-route-* == * is a qurey parameter with a key equal to any valid identifier, 
+    * is based on the value of @column.key. being either employer,location, ect.
+    when a user clicks on these links they will be routed to the values action in the list controller*@
+
 <ul>
     @foreach (KeyValuePair<string, string> column in ViewBag.columns) {
         <li>
             <a asp-controller="List" asp-action="Values" asp-route-column="@column.Key">@column.Value</a>
         </li>
+        // displays the column.Value based on column.Key^^^
     }
 </ul>
